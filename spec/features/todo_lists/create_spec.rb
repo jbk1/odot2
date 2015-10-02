@@ -1,27 +1,43 @@
 require 'spec_helper' #or should this be 'rails_helper'?
 
 describe 'creating todo_lists' do
-  it 'redirects to the todo_list index page on success' do
+
+  def create_todo_list(options={})
+    options[:title] ||= "Shopping list"
+    options[:description] ||= "What i have to buy"
+
     visit '/todo_lists'
     click_link 'New Todo list'
     expect(page).to have_content 'New Todo List'
 
-    fill_in 'Title', with: 'Shopping list'
-    fill_in 'Description', with: 'What i have to buy'
+    fill_in 'Title', with: options[:title]
+    fill_in 'Description', with: options[:description]
     click_button 'Create Todo list'
+  end
+
+
+  it 'redirects to the todo_list index page upon success' do
+    create_todo_list
     expect(page).to have_content 'Shopping list'
   end
 
-  it 'display error when todo list has no title' do
+
+  it 'displays an error when the todo list has no title' do
     expect(TodoList.count).to eq(0)
+    create_todo_list(title: '')
 
+    expect(page).to have_content 'error'
+    expect(TodoList.count).to eq(0)
+    
     visit '/todo_lists'
-    click_link 'New Todo list'
-    expect(page).to have_content 'New Todo List'
+    expect(page).to_not have_content 'What i have to buy'
+  end
 
-    fill_in 'Title', with: ''
-    fill_in 'Description', with: 'What i have to buy'
-    click_button 'Create Todo list'
+
+  it 'displays an error when the todo list title is <2 chars' do
+    expect(TodoList.count).to eq(0)
+    create_todo_list(title: 'A')
+
     expect(page).to have_content 'error'
     expect(TodoList.count).to eq(0)
 
@@ -29,20 +45,28 @@ describe 'creating todo_lists' do
     expect(page).to_not have_content 'What i have to buy'
   end
 
-  it 'display error when todo list title is less than 2 chars' do
+
+  it 'displays an error when the todo list has no description' do
     expect(TodoList.count).to eq(0)
+    create_todo_list(description: '')
 
-    visit '/todo_lists'
-    click_link 'New Todo list'
-    expect(page).to have_content 'New Todo List'
-
-    fill_in 'Title', with: 'A'
-    fill_in 'Description', with: 'What i have to buy'
-    click_button 'Create Todo list'
     expect(page).to have_content 'error'
     expect(TodoList.count).to eq(0)
 
     visit '/todo_lists'
     expect(page).to_not have_content 'What i have to buy'
   end
+
+
+  it 'displays an error when the todo list description is <5 chars' do
+    expect(TodoList.count).to eq(0)
+    create_todo_list(description: 'What')
+
+    expect(page).to have_content 'error'
+    expect(TodoList.count).to eq(0)
+
+    visit '/todo_lists'
+    expect(page).to_not have_content 'What i have to buy'
+  end
+  
 end

@@ -50,6 +50,8 @@ group :test do
   gem 'capybara'
 
   gem 'pry-rails'
+
+  gem 'shoulda-matchers', github: 'thoughtbot/shoulda-matchers'
   
 end
 

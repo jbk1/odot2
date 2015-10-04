@@ -1,4 +1,4 @@
-require 'spec_helper' #or should this be 'rails_helper'?
+require 'rails_helper' #or should this be 'rails_helper'?
 
 describe 'editing todo_lists' do
   let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
@@ -23,6 +23,7 @@ describe 'editing todo_lists' do
     update_todo_list(todo_list: todo_list)
 
     todo_list.reload
+    # binding.pry
     expect(page).to have_content('Todo list was successfully updated')
     expect(todo_list.title).to eq('New title')
     expect(todo_list.description).to eq('New description')

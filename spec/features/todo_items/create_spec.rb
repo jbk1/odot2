@@ -1,5 +1,44 @@
 require 'rails_helper'
 
-  describe 'creating todo_items' do
+
+  describe 'Creating todo_items' do
+    let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
+    # let!(:todo_item) { TodoItem.create(content: 'Buy Bananas') }
+
+    def visit_todo_list(list)
+      visit '/todo_lists'
+      within "#todo_list_#{todo_list.id}" do
+        click_link "List Items"
+      end
+    end
+
+
+    it 'is successful with valid content' do
+      visit_todo_list(todo_list)
+      click_link 'New Todo Item'
+      fill_in 'Content', with: 'Milk'
+      click_button 'Save'
+
+      expect(page).to have_content('Added todo list item.')
+      within('ul.todo_items') do
+        expect(page).to have_content('Milk')
+      end
+    end
 
   end
+
+
+
+  # def create_todo_item(options={})
+  #   options[:title] ||= "Shopping list"
+  #   options[:description] ||= "What i have to buy"
+
+  #   visit '/todo_lists'
+  #   click_link 'New Todo list'
+  #   expect(page).to have_content 'New Todo List'
+
+  #   fill_in 'Title', with: options[:title]
+  #   fill_in 'Description', with: options[:description]
+  #   click_button 'Create Todo list'
+  # end
+

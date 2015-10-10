@@ -5,7 +5,7 @@ require 'rails_helper'
     let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
     # let!(:todo_item) { TodoItem.create(content: 'Buy Bananas') }
 
-    def visit_todo_list(list)
+    def visit_todo_list_items(list)
       visit '/todo_lists'
       within "#todo_list_#{todo_list.id}" do
         click_link "List Items"
@@ -14,7 +14,7 @@ require 'rails_helper'
 
 
     it 'is successful with valid content' do
-      visit_todo_list(todo_list)
+      visit_todo_list_items(todo_list)
       click_link 'New Todo Item'
       fill_in 'Content', with: 'Milk'
       click_button 'Save'
@@ -26,7 +26,7 @@ require 'rails_helper'
     end
 
     it 'displays an error with no content' do
-      visit_todo_list(todo_list)
+      visit_todo_list_items(todo_list)
       click_link 'New Todo Item'
       fill_in 'Content', with: ''
       click_button 'Save'
@@ -38,7 +38,7 @@ require 'rails_helper'
     end
 
     it 'displays an error with content less than 2 chars' do
-      visit_todo_list(todo_list)
+      visit_todo_list_items(todo_list)
       click_link 'New Todo Item'
       fill_in 'Content', with: 'A'
       click_button 'Save'
@@ -49,19 +49,3 @@ require 'rails_helper'
       expect(page).to have_content("Content is too short")
     end
   end
-
-
-
-  # def create_todo_item(options={})
-  #   options[:title] ||= "Shopping list"
-  #   options[:description] ||= "What i have to buy"
-
-  #   visit '/todo_lists'
-  #   click_link 'New Todo list'
-  #   expect(page).to have_content 'New Todo List'
-
-  #   fill_in 'Title', with: options[:title]
-  #   fill_in 'Description', with: options[:description]
-  #   click_button 'Create Todo list'
-  # end
-

@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<!-- <p id="notice"><%= notice %></p> -->
 
 <h1><%= @todo_list.title %>'s Todo Items: </h1>
 
@@ -9,6 +9,8 @@
     <td><%= link_to "Edit", edit_todo_list_todo_item_path(todo_item) %></td>
     <td><%= link_to "Delete", todo_list_todo_item_path(todo_item),
       method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to "Mark complete", complete_todo_list_todo_item_path(todo_item),
+      method: :patch %></td>
   </tr>
   <% end %>
 </table>

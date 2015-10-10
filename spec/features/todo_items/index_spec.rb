@@ -2,7 +2,6 @@ require 'rails_helper'
 
   describe 'Viewing todo_items' do
     let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
-    # let!(:todo_item) { TodoItem.create(content: 'Buy Bananas') }
 
     it 'displays the title of the todo list' do
       visit_todo_list(todo_list)
@@ -13,7 +12,7 @@ require 'rails_helper'
 
     it 'displays no items when a todo list is empty' do
       visit_todo_list(todo_list)
-      expect(page.all('ul.todo_items li').size).to eq(0)
+      expect(page.all('.todo_items tr').size).to eq(0)
     end
 
     it 'displays item content when todo list has items' do
@@ -22,9 +21,9 @@ require 'rails_helper'
       
       visit_todo_list(todo_list)
 
-      expect(page.all('ul.todo_items li').size).to eq(2)
+      expect(page.all('.todo_items tr').size).to eq(2)
       
-      within "ul.todo_items" do
+      within ".todo_items" do
         expect(page).to have_content('Milk')
         expect(page).to have_content('Eggs')
       end

@@ -3,7 +3,6 @@ require 'rails_helper'
 
   describe 'Creating todo_items' do
     let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
-    # let!(:todo_item) { TodoItem.create(content: 'Buy Bananas') }
 
     it 'is successful with valid content' do
       visit_todo_list(todo_list)
@@ -12,7 +11,7 @@ require 'rails_helper'
       click_button 'Save'
 
       expect(page).to have_content('Added todo list item.')
-      within('ul.todo_items') do
+      within('.todo_items') do
         expect(page).to have_content('Milk')
       end
     end

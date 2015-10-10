@@ -4,15 +4,8 @@ describe 'editing todo items' do
   let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
   let!(:todo_item) { todo_list.todo_items.create(content: 'Milk') }
 
-  def visit_todo_list_items(list)
-    visit '/todo_lists'
-    within "#todo_list_#{todo_list.id}" do
-      click_link "List Items"
-    end
-  end
-
   it 'is succeesful with valid content' do
-    visit_todo_list_items(todo_list)
+    visit_todo_list(todo_list)
     within("#todo_item_#{todo_item.id}") do
       click_link('Edit')
     end
@@ -24,7 +17,7 @@ describe 'editing todo items' do
   end
 
   it 'is unsuccessful with no content' do
-    visit_todo_list_items(todo_list)
+    visit_todo_list(todo_list)
     within("#todo_item_#{todo_item.id}") do
       click_link('Edit')
     end
@@ -37,7 +30,7 @@ describe 'editing todo items' do
   end
 
   it 'is unsuccessful with not enough content' do
-    visit_todo_list_items(todo_list)
+    visit_todo_list(todo_list)
     within("#todo_item_#{todo_item.id}") do
       click_link('Edit')
     end

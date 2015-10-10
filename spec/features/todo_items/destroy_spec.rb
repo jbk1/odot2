@@ -6,7 +6,7 @@ describe 'deleting todo items' do
 
   it 'should successfully destroy an item' do
     visit_todo_list(todo_list)
-    within dom_id_for(todo_item.id) do
+    within("#todo_item_#{todo_item.id}") do
       click_link('Delete')
     end
     expect(page).to have_content('Deleted todo list item.')

@@ -12,8 +12,8 @@ require 'rails_helper'
 
     it 'displays no items when a todo list is empty' do
       visit_todo_list(todo_list)
-      expect(page.all('.todo_items tr').size).to eq(0)
-    end
+      expect(page.all('.todo_items tr').size).to eq(1)#1 becasue some styling
+    end # is fitted in a row in thead!
 
     it 'displays item content when todo list has items' do
       todo_list.todo_items.create(content: 'Milk')
@@ -21,8 +21,8 @@ require 'rails_helper'
       
       visit_todo_list(todo_list)
 
-      expect(page.all('.todo_items tr').size).to eq(2)
-      
+      expect(page.all('.todo_items tr').size).to eq(3) 
+      #3 not 2 becasue some styling is fitted in a row in thead!
       within ".todo_items" do
         expect(page).to have_content('Milk')
         expect(page).to have_content('Eggs')

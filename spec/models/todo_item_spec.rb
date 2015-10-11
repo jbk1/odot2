@@ -1,10 +1,20 @@
 require 'rails_helper'
 
 describe TodoItem do
-       it { should belong_to(:todo_list) }
-end
+  it { should belong_to(:todo_list) }
 
-# RSpec.describe TodoItem, type: :model do
-#     it { should belong_to(:todo_list) }
-# # pending "add some examples to (or delete) #{__FILE__}"
-# end
+  context '#completed' do
+    let(:todo_item) { TodoItem.create(content: 'homework') }
+
+    it 'is false when completed_at is blank' do
+      todo_item.completed_at = nil
+      expect(todo_item.completed?).to be_falsey
+    end
+
+    it 'returns true when completed_at is not empty' do
+      todo_item.completed_at = Time.now
+      expect(todo_item.completed?).to be_truthy
+    end
+
+  end 
+end 

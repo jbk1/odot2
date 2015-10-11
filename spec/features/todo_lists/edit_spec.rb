@@ -19,57 +19,69 @@ describe 'editing todo_lists' do
     click_button "Update Todo list"
   end
 
-  it 'updates a todo list successfully wht the valid information' do
-    update_todo_list(todo_list: todo_list)
 
-    todo_list.reload
-    # binding.pry
-    expect(page).to have_content('Todo list was successfully updated')
-    expect(todo_list.title).to eq('New title')
-    expect(todo_list.description).to eq('New description')
+  context 'when logged out' do
+    it 'is impossible' do
+      visit '/todo_lists'
+
+      expect(page).to_not have_link('Edit')
+    end
   end
 
-  it 'displays an error with no title' do
-    update_todo_list(todo_list: todo_list, title: '')
-    title = todo_list.title
-    description = todo_list.description
-    
-    todo_list.reload
-    expect(page).to have_content('error')
-    expect(todo_list.title).to eq(title)
-    expect(todo_list.description).to eq(description)
-  end
 
-  it 'displays an error a title of <2 chars' do
-    update_todo_list(todo_list: todo_list, title: 'A')
-    title = todo_list.title
-    description = todo_list.description
-    
-    todo_list.reload
-    expect(page).to have_content('error')
-    expect(todo_list.title).to eq(title)
-    expect(todo_list.description).to eq(description)
-  end
+  context 'when logged in' do
+    it 'updates a todo list successfully wht the valid information' do
+      update_todo_list(todo_list: todo_list)
 
-  it 'displays an error with no description' do
-    update_todo_list(todo_list: todo_list, description: '')
-    title = todo_list.title
-    description = todo_list.description
-    
-    todo_list.reload
-    expect(page).to have_content('error')
-    expect(todo_list.title).to eq(title)
-    expect(todo_list.description).to eq(description)
-  end
+      todo_list.reload
+      # binding.pry
+      expect(page).to have_content('Todo list was successfully updated')
+      expect(todo_list.title).to eq('New title')
+      expect(todo_list.description).to eq('New description')
+    end
 
-  it 'displays an error a description of <5 chars' do
-    update_todo_list(todo_list: todo_list, description: 'What')
-    title = todo_list.title
-    description = todo_list.description
-    
-    todo_list.reload
-    expect(page).to have_content('error')
-    expect(todo_list.title).to eq(title)
-    expect(todo_list.description).to eq(description)
+    it 'displays an error with no title' do
+      update_todo_list(todo_list: todo_list, title: '')
+      title = todo_list.title
+      description = todo_list.description
+      
+      todo_list.reload
+      expect(page).to have_content('error')
+      expect(todo_list.title).to eq(title)
+      expect(todo_list.description).to eq(description)
+    end
+
+    it 'displays an error a title of <2 chars' do
+      update_todo_list(todo_list: todo_list, title: 'A')
+      title = todo_list.title
+      description = todo_list.description
+      
+      todo_list.reload
+      expect(page).to have_content('error')
+      expect(todo_list.title).to eq(title)
+      expect(todo_list.description).to eq(description)
+    end
+
+    it 'displays an error with no description' do
+      update_todo_list(todo_list: todo_list, description: '')
+      title = todo_list.title
+      description = todo_list.description
+      
+      todo_list.reload
+      expect(page).to have_content('error')
+      expect(todo_list.title).to eq(title)
+      expect(todo_list.description).to eq(description)
+    end
+
+    it 'displays an error a description of <5 chars' do
+      update_todo_list(todo_list: todo_list, description: 'What')
+      title = todo_list.title
+      description = todo_list.description
+      
+      todo_list.reload
+      expect(page).to have_content('error')
+      expect(todo_list.title).to eq(title)
+      expect(todo_list.description).to eq(description)
+    end
   end
 end

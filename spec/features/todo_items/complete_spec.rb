@@ -4,6 +4,12 @@ describe 'Completing todo items' do
   let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
   let!(:todo_item) { todo_list.todo_items.create(content: 'Milk') }
 
+  before do
+    user = User.create(email: 'test@test.com', password: '12345678',
+      password_confirmation: '12345678')
+    login_as user
+  end
+
   it 'is successful when marking a single item complete' do
     expect(todo_item.completed_at).to be_nil
     visit_todo_list(todo_list)

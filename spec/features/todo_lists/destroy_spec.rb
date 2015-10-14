@@ -12,6 +12,12 @@ describe 'deleting todo_lists' do
   end
 
   context 'when logged in' do
+    before do
+      user = User.create(email: 'test@test.com', password: '12345678',
+        password_confirmation: '12345678')
+      login_as user
+    end
+    
     it 'is successful on clicking desroy link' do
       visit '/todo_lists'
 

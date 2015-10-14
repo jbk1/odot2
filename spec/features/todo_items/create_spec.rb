@@ -15,6 +15,12 @@ require 'rails_helper'
 
 
     context 'when logged in' do
+      before do
+        user = User.create(email: 'test@test.com', password: '12345678',
+          password_confirmation: '12345678')
+        login_as user
+      end
+
       it 'is successful with valid content' do
         visit_todo_list(todo_list)
         click_link 'New Todo Item'

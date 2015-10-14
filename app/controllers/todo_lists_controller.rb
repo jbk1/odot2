@@ -3,6 +3,7 @@ class TodoListsController < ApplicationController
 
   # GET /todo_lists
   # GET /todo_lists.json
+  before_action :authenticate_user!#, except: [:index]
   def index
     @todo_lists = TodoList.all
   end

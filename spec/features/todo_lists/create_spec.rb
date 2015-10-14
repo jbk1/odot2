@@ -17,9 +17,8 @@ describe 'Creating todo_lists' do
 
 
   context 'when not logged in' do
-    it 'takes u sto the sign up page' do
+    it "we're redirected to the sign up page" do
       visit '/todo_lists'
-      click_link 'New Todo list'
 
       expect(page).to have_content('Sign up')
     end
@@ -27,6 +26,12 @@ describe 'Creating todo_lists' do
 
 
   context 'when logged in' do
+    before do
+      user = User.create(email: 'test@test.com', password: '12345678',
+        password_confirmation: '12345678')
+      login_as user
+    end
+
     it 'redirects to the todo_list index page upon success' do
       create_todo_list
       # binding.pry

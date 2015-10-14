@@ -2,6 +2,11 @@ require 'rails_helper'
 
   describe 'Viewing todo_items' do
     let!(:todo_list) { TodoList.create(title: 'Grocery list', description: 'Groceries that i need to buy.') }
+    before do
+      user = User.create(email: 'test@test.com', password: '12345678',
+        password_confirmation: '12345678')
+      login_as user
+    end
 
     it 'displays the title of the todo list' do
       visit_todo_list(todo_list)

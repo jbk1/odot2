@@ -39,7 +39,7 @@ require 'rails_helper'
         fill_in 'Content', with: ''
         click_button 'Save'
 
-        within("div.flash") do
+        within("div.panel") do
           expect(page).to have_content('There was a problem adding that todo list item.')
         end
         expect(page).to have_content("Content can't be blank")
@@ -51,7 +51,7 @@ require 'rails_helper'
         fill_in 'Content', with: 'A'
         click_button 'Save'
 
-        within("div.flash") do
+        within("div.panel") do
           expect(page).to have_content('There was a problem adding that todo list item.')
         end
         expect(page).to have_content("Content is too short")

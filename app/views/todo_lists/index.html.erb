@@ -1,4 +1,4 @@
-<h1>Todo Lists</h1>
+<h1> <%= current_user.email %>'s Todo Lists</h1>
 
 <% if user_signed_in? %>
   <% @todo_lists.each do |todo_list| %>

@@ -3,25 +3,23 @@
 <head>
   <title>Odot2</title>
   <!-- Latest compiled and minified CSS -->
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <%= csrf_meta_tags %>
+  <!-- Latest compiled and minified CSS -->
+  <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+
   <!-- Optional theme -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+
   <!-- Latest compiled and minified JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-  <%= csrf_meta_tags %>
+
+
 </head>
 
 <body>
-  <div class="panel panel-default">
-    <% flash.each do |type, message| %>
-      <div class='<%= build_alert_classes(type) %>'>
-        <%= message %>
-      </div>
-    <% end %>
-  </div>
 
   <nav class="navbar navbar-default">
     <div class="container-fluid">
@@ -46,11 +44,27 @@
     </div>
   </nav>
 
+  <div class="flash panel">
+    <% flash.each do |type, message| %>
+      <div class="alert <%= build_alert_classes(type) %> alert-dismissible">
+        <a class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
+        <%= message %>
+      </div>
+    <% end %>
+  </div>
+  
   <main>
     <div class="container-fluid">
       <%= yield %>
     </div>
   </main>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $(".close").click(function(){
+        $("#myAlert").alert();
+      });
+    });  
+  </script>
 
 </body>
 </html>

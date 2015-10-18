@@ -1,23 +1,36 @@
-<h1> <%= current_user.email %>'s Todo Lists</h1>
-
 <% if user_signed_in? %>
-  <% @todo_lists.each do |todo_list| %>
-  <div class='todo_list' id="<%= dom_id(todo_list) %>">
-    <h2><%= todo_list.title %></h2>
-    <p><%= todo_list.description %></p>
-    <ul class='functions'>
-      <li><%= link_to 'Show', todo_list %></li>
-      <li><%= link_to 'Edit', edit_todo_list_path(todo_list) %></li>
-      <li><%= link_to 'Delete', todo_list, method: :delete, data: { confirm: 'Are you sure?' } %></li>
-      <li><%= link_to 'List Items',
-        todo_list_todo_items_path(todo_list) %></li>
-    </ul>
-    <br class='clear' />
-  </div>
-  <% end %>
-  <br>
-  <%= link_to 'New Todo list', new_todo_list_path %>
+<div class="table-responsive">
+  <table class="table table-striped table-hover">
+    <thead>
+      <caption class="text-left"> <%= current_user.email %>'s Todo Lists</caption>
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+      
+    <tbody>
+      <% @todo_lists.each do |todo_list| %>
+      <div class='todo_list' id="<%= dom_id(todo_list) %>">
+        <tr>
+          <td><%= todo_list.title %></td>
+          <td><%= todo_list.description %></td>
+          <td>
+            <ul class='functions'>
+              <li><%= link_to 'Show', todo_list %>, <%= link_to 'Edit', edit_todo_list_path(todo_list) %></li>
+              <li><%= link_to 'Delete', todo_list, method: :delete,
+                data: { confirm: 'Are you sure?' } %>, <%= link_to 'List Items', 
+                todo_list_todo_items_path(todo_list) %></li>
+            </ul>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>  
+  </table>
+  <%= link_to "New Todo list", new_todo_list_path, class: "btn btn-primary btn-xs" %>
+</div>
+
 <% else %>
-  <p>You need to Login or Register to be able to view or create Todo
-   Lists</p>
+  <h3>>You need to Login or Register to be able to view or create Todo Lists</h3>
 <% end %>

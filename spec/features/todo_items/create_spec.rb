@@ -28,7 +28,7 @@ require 'rails_helper'
         click_button 'Save'
 
         expect(page).to have_content('Added todo list item.')
-        within('.todo_items') do
+        within('.todo_item') do
           expect(page).to have_content('Milk')
         end
       end

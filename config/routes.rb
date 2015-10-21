@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   end
 
   devise_for :users
-  resources :todo_lists do
+  resources :todo_lists, except: :show do
     resources :todo_items do
       member do
         patch :complete

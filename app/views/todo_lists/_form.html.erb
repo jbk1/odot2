@@ -1,4 +1,4 @@
-<%= form_for(@todo_list) do |f| %>
+<%= form_for(@todo_list)  do |f| %>
   <% if @todo_list.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@todo_list.errors.count, "error") %> prohibited this todo_list from being saved:</h2>
@@ -11,15 +11,21 @@
     </div>
   <% end %>
 
-  <div class="field">
+  <div class="form-group">
     <%= f.label :title %><br>
     <%= f.text_field :title %>
   </div>
-  <div class="field">
+  <div class="form-group">
     <%= f.label :description %><br>
     <%= f.text_area :description %>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div>
+    <%= f.submit class: "btn btn-primary btn-xs" %>
   </div>
 <% end %>
+
+
+<!-- Trying to add bootstrap classes to the form but causing syntax errors -->
+<!-- class: "btn btn-default btn-xs"  -->
+<!-- , html => {:class => "form-horizontal"} -->
+<!-- , class: "btn btn-default btn-xs" -->

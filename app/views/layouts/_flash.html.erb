@@ -1,0 +1,9 @@
+<div class="flash panel">
+  <% flash.each do |type, message| %>
+    <div class="alert <%= build_alert_classes(type) %> alert-dismissible fade in">
+      <a class="close" data-dismiss="alert" aria-hidden="true">&times;</a>
+      <%= message %>
+    </div>
+  <% end %>
+</div>
+

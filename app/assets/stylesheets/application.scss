@@ -18,6 +18,43 @@
 @import "scaffolds";
 @import "todo_items";
 @import "todo_lists";
+@import "pages";
+
+// App wide
+// Stopping the 'flash .panel' renderring a border & margin.
+.panel {
+  border: 0px;
+  margin: 0px;
+}
+
+.alert  {
+  margin: 0px;
+}
+
+// Stopping the '.navbar' renderring margin.
+.navbar  {
+  margin: 0px;
+}
+
+// Homepage specific
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+.footer {
+  margin-left: 15px; 
+}
+// .jumbotron  {
+//   margin: 0px;
+// }
+
+// a:visited {
+//     color: #ffffff;
+// }
+
 
  
 

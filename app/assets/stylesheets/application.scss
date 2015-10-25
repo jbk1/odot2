@@ -11,13 +11,14 @@
  * file per style scope.
  */
 
-@import 'bootstrap_overrides';
+// @import 'bootstrap_overrides'; Not using this as using _bootstrap-variables.scss
+@import 'bootstrap-variables';
 @import 'bootstrap-sprockets'; // When enabled, changes the load path for fonts
 @import 'bootstrap';
 @import 'tables';
 @import 'partials/todo_items';
 @import 'partials/todo_lists';
 @import 'home';
-@import 'header_and_footer';
+@import 'partials/header_and_footer';
 
 

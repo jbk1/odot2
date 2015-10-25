@@ -1,0 +1,45 @@
+// App wide
+// Stopping the 'flash .panel' renderring a border & margin.
+.panel {
+  border: 0px;
+  margin: 0px;
+}
+
+.alert  {
+  margin: 0px;
+  border: 0px;
+  border-radius: 0px;
+  text-align: center;
+}
+
+// Stopping the '.navbar' renderring margin.
+.navbar  {
+  margin: 0px;
+  border-radius: 0px;
+}
+
+.footer {
+  margin-left: 15px; 
+}
+
+.header-icon {
+  padding: 1.5em 0.25em;
+}
+
+.logo {
+  margin: 0.4em 0;
+  a {
+    background: transparent url(asset_path(#{"logo_odot.svg"})) no-repeat center center;
+    background-size: contain;
+    display: block;
+    height: 34px;
+  }
+}
+
+.page-title {
+  background: rgb(234,147,92);
+  color: #FFF;
+  text-align: center;
+  padding: 0.5em;
+  font-size: 1.5rem;
+}

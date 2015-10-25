@@ -36,5 +36,15 @@ describe 'Completing todo items' do
         expect(page).to_not have_link('Mark complete')
       end
     end
+
+    it "is possible to mark and item incomplete" do
+      visit_todo_list(todo_list)
+      within dom_id_for(completed_todo_item) do
+        click_link "Mark incomplete"
+      end
+        todo_item.reload
+        expect(page).to_not have_content(completed_todo_item.completed_at)
+        expect(page).to have_link "Mark complete"
+    end
   end
 end

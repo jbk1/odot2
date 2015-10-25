@@ -18,9 +18,9 @@
         <td> 
           <% if todo_item.completed? %>
             <%= todo_item.completed_at %>
+            <%= link_to "Mark incomplete", incomplete_todo_list_todo_item_path(todo_item), method: :patch %>
           <% else %>
-            <%= link_to "Mark complete", complete_todo_list_todo_item_path(todo_item),
-              method: :patch %>
+            <%= link_to "Mark complete", complete_todo_list_todo_item_path(todo_item), method: :patch %>
           <% end %>
         </td>
         <td><%= todo_item.content %></td>

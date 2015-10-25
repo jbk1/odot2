@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :todo_lists, except: :show do
     resources :todo_items do
       member do
-        patch :complete
+        patch :complete, :incomplete
       end
     end 
   end

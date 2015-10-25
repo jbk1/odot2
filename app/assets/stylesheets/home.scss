@@ -1,0 +1,29 @@
+// .backgroundcolorLightSkyBlue {
+//   background-color: lightskyblue !important;
+// }
+
+// .jumbotron {
+//   padding: 10px;
+// }
+
+.home {
+  color: #00297A;
+}
+
+a {
+  color: #00297A;
+  &:visited {
+    color: #00297A;
+  }
+}
+
+.jumbotron {
+  margin: 0px 20px 20px 20px;
+}
+
+
+// Already written within Bootstrap so override not required.
+// @media (max-width: @screen-xs-max) {}
+// @media (min-width: @screen-sm-min) and (max-width: @screen-sm-max) { ... }
+// @media (min-width: @screen-md-min) and (max-width: @screen-md-max) { ... }
+// @media (min-width: @screen-lg-min) { ... }

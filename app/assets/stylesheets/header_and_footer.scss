@@ -1,0 +1,19 @@
+// App wide
+// Stopping the 'flash .panel' renderring a border & margin.
+.panel {
+  border: 0px;
+  margin: 0px;
+}
+
+.alert  {
+  margin: 0px;
+}
+
+// Stopping the '.navbar' renderring margin.
+.navbar  {
+  margin: 0px;
+}
+
+.footer {
+  margin-left: 15px; 
+}

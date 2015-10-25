@@ -21,6 +21,13 @@ a {
   margin: 0px 20px 20px 20px;
 }
 
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+} 
+
 
 // Already written within Bootstrap so override not required.
 // @media (max-width: @screen-xs-max) {}

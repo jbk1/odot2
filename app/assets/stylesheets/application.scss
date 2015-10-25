@@ -15,7 +15,6 @@
 @import "bootstrap-sprockets"; // When enabled, changes the load path for fonts
 @import "bootstrap";
 @import "tables";
-@import "scaffolds";
 @import "todo_items";
 @import "todo_lists";
 @import "home";
@@ -29,8 +28,3 @@
   margin-right: auto;
   text-align: center;
 } 
-
-
-
-
- 

@@ -12,13 +12,13 @@
  *= require_self
  */
 
-@import "bootstrap-sprockets"; // When enabled, changes the load path for fonts
-@import "bootstrap";
-@import "tables";
-@import "todo_items";
-@import "todo_lists";
-@import "home";
-@import "header_and_footer";
+@import 'bootstrap-sprockets'; // When enabled, changes the load path for fonts
+@import 'bootstrap';
+@import 'tables';
+@import 'partials/todo_items';
+@import 'partials/todo_lists';
+@import 'home';
+@import 'header_and_footer';
 
 
 // Homepage specific
